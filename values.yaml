@@ -1,0 +1,27 @@
+## Images
+image:
+  registry: gcr.io
+  repository: google-samples/microservices-demo/currencyservice
+  tag: v0.1.0
+  pullPolicy: Always
+  port: 7000
+  cmd: ["/bin/grpc_health_probe", "-addr=:7000"]
+
+global:
+  imageRegistry: gcr.io
+  name: currencyservice
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+
+service:
+  type: ClusterIP
+  ports:
+    - name: grpc
+      port: 7000
+      targetPort: 7000
